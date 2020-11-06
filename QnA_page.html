@@ -37,13 +37,13 @@
                 top: 60px;
             }
             .main{
+                width: 100%;
                 position: absolute;
                 left: 0px;
                 top: 300px;
             } 
  
-            .fcf-body {
-                /* margin: 0; */
+            /* .fcf-body {
                 font-family: -apple-system, Arial, sans-serif;
                 font-size: 1rem;
                 font-weight: 400;
@@ -52,30 +52,132 @@
                 text-align: left;
                 background-color: #fff;
                 padding: 30px;
-                padding-bottom: 10px;
+                padding-bottom: 10px; 
                 border: 1px solid #ced4da;
                 border-radius: 0.25rem;
-                /* max-width: 100%; */
-                /* position: absolute;
-                top:300px;  */    
-            }
+                  
+            } */
 
             .fcf-form-group {
                 margin-bottom: 1rem;
             }
-
-            .fcf-input-group {
-                position: relative;
+            .fcf-form-group1 {
+                position: absolute;
+                top: 350px;
+                left:30px;
                 display: -ms-flexbox;
                 display: flex;
                 -ms-flex-wrap: wrap;
                 flex-wrap: wrap;
                 -ms-flex-align: stretch;
                 align-items: stretch;
-               /*  width: 100%; */
+                width: 90%;
                
             }
-
+            .fcf-form-group2 {
+                position: absolute;
+                top: 450px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
+            .fcf-form-group3 {
+                position: absolute;
+                top: 550px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
+            .fcf-form-group4 {
+                position: absolute;
+                top: 650px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
+            .fcf-form-group5 {
+                position: absolute;
+                top: 870px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
+            .fcf-input-group1 {
+                position: absolute;
+                top: 370px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
+            .fcf-input-group2 {
+                position: absolute;
+                top: 470px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
+            .fcf-input-group3 {
+                position: absolute;
+                top: 570px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
+            .fcf-input-group4 {
+                position: absolute;
+                top: 670px;
+                left:30px;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                width: 90%;
+               
+            }
             .fcf-form-control {
                 display: block;
                 width: 100%; 
@@ -195,6 +297,12 @@
             input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[type="button"].fcf-btn-block {
                 width: 100%; 
             }
+            .fcf-h3{
+                font-size: 24px;
+                position: absolute;
+                top: 300px;
+                left: 520px;
+            }
             
         </style>
     </head>
@@ -210,39 +318,44 @@
 
         <P><img class="boy1" src="image/boy1.jpg" width=100></p>
         <p><img class="boy2" src="image/boy2.jpeg" width=100></p>
-       <p><img class="main" src="image/main2.jpeg" width=1178></p>
+       <p><img class="main" src="image/main2.jpeg"></p>
         
         <link href="contact-form.css" rel="stylesheet">
 
         <div class="fcf-body">
 
             <div id="fcf-form">
+
             <h3 class="fcf-h3">문의해주세용~~</h3>
 
             <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
                 
-                <div class="fcf-form-group">
+                <div class="fcf-form-group1">
                     <label for="Name" class="fcf-label">Your name</label>
-                    <div class="fcf-input-group">
-                        <input type="text" id="Name" name="Name" class="fcf-form-control" required>
-                    </div>
                 </div>
-
-                <div class="fcf-form-group">
+                <div class="fcf-input-group1">
+                    <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                </div>
+                <div class="fcf-form-group2">
                     <label for="Phone number" class="fcf-label">Your phone number</label>
-                    <div class="fcf-input-group">
-                        <input type="number" id="Number" name="Number" class="fcf-form-control" required>
-                    </div>
                 </div>
-
-                <div class="fcf-form-group">
+                <div class="fcf-input-group2">
+                    <input type="number" id="Number" name="Number" class="fcf-form-control" required>
+                </div>
+                <div class="fcf-form-group3">
+                    <label for="Title" class="fcf-label">Title</label>
+                </div>
+                <div class="fcf-input-group3">
+                    <input type="text" id="Title" name="Title" class="fcf-form-control" required>
+                </div>
+                <div class="fcf-form-group4">
                     <label for="Message" class="fcf-label">Your message</label>
-                    <div class="fcf-input-group">
-                        <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
-                    </div>
+                </div>
+                <div class="fcf-input-group4">
+                    <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
                 </div>
 
-                <div class="fcf-form-group">
+                <div class="fcf-form-group5">
                     <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
                 </div>
 
