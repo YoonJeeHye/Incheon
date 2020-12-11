@@ -5,19 +5,180 @@
 	{% if data %}
 	<h3>{{data}}</h3>
 	{% else %}
+	<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+             .mygym{
+                position: absolute;
+                left: 50px;
+                top: 55px;
+            }
+            .qna{
+                position: absolute;
+                left: 160px;
+                top: 55px;
+            }
+            .signin{
+                position: absolute;
+                left: 950px;
+                top: 55px;
+            }
+            .signup{
+                position: absolute;
+                left: 1060px;
+                top: 55px;
+            }
+            .title{
+                font-family:'배달의민족 도현';
+                font-size: 3.2em;
+                position: absolute;
+                left: 200px;
+                top: 30px;
+            }
+            .search{
+                height: 60px;
+                width: 800px;
+                border: 1px solid black;
+                background: white;
+                position: absolute;
+                left: 200px;
+                top: 215px;
+            }
+            .keyword{
+                font-size: 30px;
+                width: 325px;
+                padding: 10px;
+                border: 0px;
+                outline: none;
+                float: left;
+                position: absolute;
+                top: 5px;
+            }
+            .searchbutton{
+                width: 50px;
+                height: 100%;
+                border: 0px;
+                background: #1b5ac2;
+                outline: none;
+                float: right;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+		<a href="/logout">Logout</a> <br> <br>
 
-	<a href="/logout">Logout</a> <br> <br>
-	<form action="" method="POST">
-	  <input type="username" name="username" placeholder="Instagram Username">
-	  <input type="submit" value="Finds">
-	</form>
+        <div class="mygym"><p><a href="/base"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p></div>
+  		<div class="qna"><p><input type = 'button' name = 'qna' value = 'QnA' width=80></a></p></div>
+  		<div class="signin"><p><a href='https://google.com'><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p></div>
+  		<div class="signup"><p><a href='https://google.com'><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p></div>
+
+        <div class='title'>
+            <h1><a href="/">INCHEON's GYM</a></h1>
+        </div>
+
+        <form class='search'>
+            <button class='searchbutton' type="submit" name="click" value="">
+            </button>
+
+            <input class='keyword' type="text" placeholder="검색어 입력">
+        </form>
+    </body>
+</html>
 	{% endif %}
 
 {% else %}
 <p>로그인이 필요합니다!!</p>
 
-<a href="/login">Login</a> 
-<a href="/register">Register</a>
+<html>
+    <head>
+        <style>
+             .mygym{
+                position: absolute;
+                left: 50px;
+                top: 55px;
+            }
+            .qna{
+                position: absolute;
+                left: 160px;
+                top: 55px;
+            }
+            .signin{
+                position: absolute;
+                left: 950px;
+                top: 55px;
+            }
+            .signup{
+                position: absolute;
+                left: 1060px;
+                top: 55px;
+            }
+            .title{
+                font-family:'배달의민족 도현';
+                font-size: 3.2em;
+                position: absolute;
+                left: 200px;
+                top: 30px;
+            }
+            .search{
+                height: 60px;
+                width: 800px;
+                border: 1px solid black;
+                background: white;
+                position: absolute;
+                left: 200px;
+                top: 215px;
+            }
+            .keyword{
+                font-size: 30px;
+                width: 325px;
+                padding: 10px;
+                border: 0px;
+                outline: none;
+                float: left;
+                position: absolute;
+                top: 5px;
+            }
+            .searchbutton{
+                width: 50px;
+                height: 100%;
+                border: 0px;
+                background: #1b5ac2;
+                outline: none;
+                float: right;
+                color: black;
+            }
+            .login_register{
+                position: absolute;
+                top: 150px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="mygym"><p><a href="/base"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p></div>
+  		<div class="qna"><p><input type = 'button' name = 'qna' value = 'QnA' width=80></a></p></div>
+  		<div class="signin"><p><a href='https://google.com'><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p></div>
+  		<div class="signup"><p><a href='https://google.com'><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p></div>
+
+        <div class='title'>
+            <h1><a href="/">INCHEON's GYM</a></h1>
+        </div>
+
+        <form class='search'>
+            <button class='searchbutton' type="submit" name="click" value="">
+            </button>
+
+            <input class='keyword' type="text" placeholder="검색어 입력">
+        </form>
+
+        <div class='login_register'>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        </div>
+    </body>
+</html>
 
 {% endif %}
 {% endblock %}
