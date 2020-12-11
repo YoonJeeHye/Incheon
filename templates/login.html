@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .content{
+                position: absolute;
+                left: 500px;
+                top: 300px;
+                text-align: center;
+              }
+      .inputBox input{
+                width: 85%;
+                padding: 1.5rem 20px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 20px;
+            }
+    </style>
+  </head>
+
+  <body>
+    <div class="content">
+<h2>Login</h2>
+<form action="/login" method="POST">
+  <fieldset>
+    <div class="inputBox">
+      <input type="userid" name="userid" placeholder="ID">
+    </div>
+    <div class="inputBox">
+  <input type="userpassword" name="userpassword" placeholder="Password">
+    </div>
+  <input type="submit" value="Log in">
+</fieldset>
+</form>
+</div>
+  </body>
+</html>
+{% endif %}
+{% endblock %}
