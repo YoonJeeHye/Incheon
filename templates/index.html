@@ -69,10 +69,10 @@
     <body>
 		<a href="/logout">Logout</a> <br> <br>
 
-        <div class="mygym"><p><a href="/base"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p></div>
+        <div class="mygym"><p><a href="/login"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p></div>
   		<div class="qna"><p><input type = 'button' name = 'qna' value = 'QnA' width=80></a></p></div>
-  		<div class="signin"><p><a href='https://google.com'><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p></div>
-  		<div class="signup"><p><a href='https://google.com'><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p></div>
+  		<div class="signin"><p><a href="/login"><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p></div>
+  		<div class="signup"><p><a href="/register"><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p></div>
 
         <div class='title'>
             <h1><a href="/">INCHEON's GYM</a></h1>
@@ -89,7 +89,7 @@
 	{% endif %}
 
 {% else %}
-<p>로그인이 필요합니다!!</p>
+
 
 <html>
     <head>
@@ -149,18 +149,14 @@
                 float: right;
                 color: black;
             }
-            .login_register{
-                position: absolute;
-                top: 150px;
-            }
         </style>
     </head>
     <body>
 
-        <div class="mygym"><p><a href="/base"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p></div>
-  		<div class="qna"><p><input type = 'button' name = 'qna' value = 'QnA' width=80></a></p></div>
-  		<div class="signin"><p><a href='https://google.com'><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p></div>
-  		<div class="signup"><p><a href='https://google.com'><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p></div>
+        <div class="mygym"><p><a href="/login"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p></div>
+        <div class="qna"><p><input type = 'button' name = 'qna' value = 'QnA' width=80></a></p></div>
+        <div class="signin"><p><a href="/login"><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p></div>
+        <div class="signup"><p><a href="/register"><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p></div>
 
         <div class='title'>
             <h1><a href="/">INCHEON's GYM</a></h1>
@@ -172,11 +168,6 @@
 
             <input class='keyword' type="text" placeholder="검색어 입력">
         </form>
-
-        <div class='login_register'>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-        </div>
     </body>
 </html>
 
