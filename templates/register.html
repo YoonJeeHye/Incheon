@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 {% if session['logged_in'] %}
-<p>Oh no Dont show page</p>
 {% else %}
 
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-            .MYGYM{
+            .mygym{
                 position: absolute;
                 left: 50px;
             }
@@ -31,17 +30,6 @@
                 left: 370px;
                 top: 30px;
             }
-
-            .boy1{
-                position: absolute;
-                left: 70px;
-                top: 60px;
-            }
-            .boy2{
-                position: absolute;
-                left: 1220px;
-                top: 60px;
-            }
             .content{
                 position: absolute;
                 left: 500px;
@@ -62,18 +50,14 @@
 </head>
 
 <body>
-  <p><a href="/base"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p>
-  <p><input type = 'button' name = 'qna' value = 'QnA' width=80></a></p>
-  <p><a href='https://google.com'></a><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p>
-  <p><a href='https://google.com'></a><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p>
+  <div class="mygym"><p><a href="/base"><input type = 'button' name = 'MYGYM' value = 'MY GYM' width=80></a></p></div>
+  <div class="qna"><p><input type = 'button' name = 'qna' value = 'QnA' width=80></a></p></div>
+  <div class="signin"><p><a href='https://google.com'><input type = 'button' name = 'signin' value = 'SIGN-IN' width=80></a></p></div>
+  <div class="signup"><p><a href='https://google.com'><input type = 'button' name = 'signup' value = 'SIGN-UP' width=80></a></p></div>
 
   <div class='title'>
-    <h1>INCHEON's GYM</h1>
-  </div>
-
-  
-  <P><img class="boy1" src="image/boy1.jpeg" width=150></p>
-  <p><img class="boy2" src="image/boy2.jpeg" width=150></p>
+    <a href="/"><h1>INCHEON's GYM</h1></a>
+  </div> 
 
 <div class="content">
   <p class="warning">예약하고 싶은 사람~~</p>
