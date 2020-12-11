@@ -50,12 +50,22 @@ def login():
                 session['logged_in'] = True
                 return redirect(url_for('home'))
             else:
-                return 'Dont Login'
+                return render_template('register2.html')
         except:
             return "Dont Login"
 
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
+    """Register Form"""
+    if request.method == 'POST':
+        new_user = User(username=request.form['username'], userid=request.form['userid'], userpassword=request.form['userpassword'], userphone=request.form['userphone'])
+        db.session.add(new_user)
+        db.session.commit()
+        return render_template('login.html')
+    return render_template('register.html')
+
+@app.route('/register2/', methods=['GET', 'POST'])
+def register2():
     """Register Form"""
     if request.method == 'POST':
         new_user = User(username=request.form['username'], userid=request.form['userid'], userpassword=request.form['userpassword'], userphone=request.form['userphone'])
