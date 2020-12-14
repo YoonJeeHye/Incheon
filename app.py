@@ -1,9 +1,10 @@
 """Flask Login Example and instagram fallowing find"""
 
+
 from flask import Flask, url_for, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from instagram import getfollowedby, getname
-
+import sqlite3
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -81,9 +82,37 @@ def logout():
     return redirect(url_for('home'))
 
 
+@app.route('/')
+@app.route('/index')
+def hello():
+    db = sqlite3.connect("GYM_table.db")
+    cur = db.cursor()
+    ## db.row_factory = sqlite3.Row
+    items = cur.execute('SELECT gCategory, gName, gAddress, gNumber FROM GYM'
+    ).fetchall()
+    
+ ##   items = db.excute(
+ ##       'SELECT gCategory, gName, gAddress, gNumber FROM GYM'
+ ##   ).fetchall()
+
+    output = ''
+    for item in items:
+        output += item[0] + '<br>'
+        output += item[1] + '<br>'
+        output += item[2] + '<br>'
+        output += item[3] + '<br>'
+     ##   return item
+     ##   print(item[0])
+    
+    ## return output
+    print(output)
+    return(output)
+
 if __name__ == '__main__':
     app.debug = True
     db.create_all()
     app.secret_key = "123"
-    app.run(host='0.0.0.0')
+    hello()
+    app.run(host='')
+
     
