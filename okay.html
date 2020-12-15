@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session['logged_in'] %}
+{% else %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+             .inputBox input{
+                width: 85%;
+                padding: 1.5rem 20px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="DB">
+            {% for i in items %}
+            {{ i.gNum }} </br>
+            {{ i.username }} </br>
+            {{ i.userphone }} </br></br>
+            {% endfor %}
+        </div>
+        <div class="inputBox">
+            <input type="text" name="startTime" placeholder="사용 시작 시간">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="endTime" placeholder="사용 완료 시간">
+        </div>
+    </body>
+</html>
+{% endif %}
+{% endblock %}

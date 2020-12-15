@@ -25,6 +25,26 @@ class User(db.Model):
         self.userpassword = userpassword
         self.userphone = userphone
 
+class Reservation(db.Model):
+    """ Create reservation table"""
+    rNum = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80))
+    db.ForeignKey('User.username'))
+    userphone = db.Column(db.String(80))
+    db.ForeignKey('User.userphone'))
+    gNum = db.Column(db.Integer)
+    db.ForeignKey('GYM.gNum'))
+    startTime = db.Column(db.String(80))
+    endTime = db.Column(db.String(80))
+
+    def __init__(self,rNum, username, userphone,gNum,startTime,endTime):
+        self.rNum = rNum
+        self.username = username
+        self.userphone = userphone
+        self.gNum = gNum      
+        self.startTime = startTime    
+        self.endTime = endTime     
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     """ Session control"""
@@ -93,7 +113,22 @@ def GYMMenu():
     ).fetchall()
 
     db.close()
-    return render_template('index.html', items=items)
+    return render_template('index.html')
+
+@app.route('/', methods=['GET', 'POST'])
+def search():
+    search=request.form.get("search", "")
+    conn=sqlite3.connect("GYM_table.db")
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    sql="SELECT gCategory FROM GYM WHERE gCategory like ?"
+    cur.execute(sql, ('%'+search+'%',))
+    rows = cur.fetchall()
+    conn.close()
+
+    return render_template('index.html', data=rows)
+
+
 
 if __name__ == '__main__':
     app.debug = True
