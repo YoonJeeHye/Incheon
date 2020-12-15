@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-{% if session['logged_in'] %}
+{% if not session['logged_in'] %}
 {% else %}
 
 <!DOCTYPE html>
@@ -18,16 +18,22 @@
     </head>
     <body>
         <div class="inputBox">
+            <input type="text" name="username" placeholder="사용자 이름">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="userphone" placeholder="사용자 전화번호">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="gNum" placeholder="시설 고유 번호">
+        </div>
+        <div class="inputBox">
             <input type="text" name="startTime" placeholder="사용 시작 시간">
         </div>
         <div class="inputBox">
             <input type="text" name="endTime" placeholder="사용 완료 시간">
         </div>
-        <div class="DB">
-            {% for i in items %}
-            {{ i.username }} </br>
-            {{ i.userphone }} </br></br>
-            {% endfor %}
+        <div class="confirmButton">
+        <p><input type="submit"></p>
         </div>
     </body>
 </html>

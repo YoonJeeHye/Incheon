@@ -20,26 +20,6 @@ def GYMMenu():
     db.close()
     return render_template('index.html', items=items)
 
-@app.route('/okay/')
-def okay():
-    """Okay Form"""
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        db = sqlite3.connect("GYM_table.db")
-        db.row_factory = sqlite3.Row
-    
-        items = db.execute(
-            'SELECT username, userphone FROM user'
-        ).fetchall()
-
-        db.close()
-        print(items)
-        return render_template('okay.html', items=items)
-
-
-
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///GYM_table.db'
 db = SQLAlchemy(app)
 
@@ -60,9 +40,9 @@ class User(db.Model):
 
 class Reservation(db.Model):
     """ Create reservation table"""
-    username = db.Column(db.String(80),db.ForeignKey('User.username'),primary_key=True)
+    username = db.Column(db.String(80),db.ForeignKey('User.username'))
     userphone = db.Column(db.String(80),db.ForeignKey('User.userphone'),primary_key=True)
-    gNum = db.Column(db.Integer,db.ForeignKey('GYM.gNum'),primary_key=True)
+    gNum = db.Column(db.Integer,db.ForeignKey('GYM.gNum'))
     startTime = db.Column(db.String(80))
     endTime = db.Column(db.String(80))
 
@@ -72,6 +52,7 @@ class Reservation(db.Model):
         self.gNum = gNum      
         self.startTime = startTime    
         self.endTime = endTime 
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -123,6 +104,20 @@ def register2():
         return render_template('login.html')
     return render_template('register.html')
 
+
+@app.route('/okay/',methods=['GET','POST'])
+def okay():
+    """Okay Form"""
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        if request.method == 'POST':
+            new_reservation = Reservation(username=request.form['username'], userphone=request.form['userphone'], gNum=request.form['gNum'], startTime=request.form['startTime'], endTime=request.form['endTime'])
+            db.session.add(new_reservation)
+            db.session.commit()
+            return render_template('index.html')
+    return render_template('okay.html')
+
 @app.route("/logout")
 def logout():
     """Logout Form"""
@@ -140,14 +135,6 @@ def search():
     rows = cur.fetchall()
     conn.close()
     return render_template('index.html', data=rows)
-   
-
-
-   
-
-#app = Flask(__name__)
-
-
 
 if __name__ == '__main__':
     app.debug = True

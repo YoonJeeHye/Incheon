@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not session['logged_in'] %}
+{% else %}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <form action="/okay" method="post">
+        <p>
+
+        <div>
+            {% for row in data %}
+                    {{row[0]}}
+                    {{row[1]}}
+                    {{row[2]}}
+                    {{row[3]}}
+                    {{row[4]}}
+                <br>
+                {% endfor %}
+        </div>
+        <br>
+        <br>
+        <input type="button" value="목록으로 가기" onClick="searchRestaurant()">
+        <br>
+        
+    </form>
+
+    <script>
+        function searchRestaurant() {
+            document.location="/searchRestaurant";
+        }
+    </script>
+</body>
+</html>
+
+
+{% endif %}
+{% endblock %}

@@ -2,10 +2,18 @@
 {% block content %}
 {% if session['logged_in'] %}
    
-	{% if data %}
-	<h3>{{data}}</h3>
+    {% if data %}
+        {% for data in data %}
+            <li><h3>{{ data[0] }}</h3>
+                <h3>{{ data[1] }}</h3>
+                <h3>{{ data[2] }}</h3>
+                <h3>{{ data[3] }}</h3>
+                <h3>{{ data[4] }}</h3>
+                <a href='{{url_for('okay')}}'>Reservation</a>
+        {% endfor %}
+            </li>
 	{% else %}
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <style>
@@ -95,8 +103,6 @@
 	{% endif %}
 
 {% else %}
-
-
 <html>
     <head>
         <style>
