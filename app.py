@@ -7,7 +7,7 @@ from instagram import getfollowedby, getname
 import sqlite3
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///GYM_table.db'
 db = SQLAlchemy(app)
 
 
@@ -81,38 +81,24 @@ def logout():
     session['logged_in'] = False
     return redirect(url_for('home'))
 
+app = Flask(__name__)
 
 @app.route('/')
-@app.route('/index')
-def hello():
+def GYMMenu():
     db = sqlite3.connect("GYM_table.db")
-    cur = db.cursor()
-    ## db.row_factory = sqlite3.Row
-    items = cur.execute('SELECT gCategory, gName, gAddress, gNumber FROM GYM'
+    db.row_factory = sqlite3.Row
+    
+    items = db.execute(
+        'SELECT gCategory, gName, gAddress, gNumber FROM GYM'
     ).fetchall()
-    
- ##   items = db.excute(
- ##       'SELECT gCategory, gName, gAddress, gNumber FROM GYM'
- ##   ).fetchall()
 
-    output = ''
-    for item in items:
-        output += item[0] + '<br>'
-        output += item[1] + '<br>'
-        output += item[2] + '<br>'
-        output += item[3] + '<br>'
-     ##   return item
-     ##   print(item[0])
-    
-    ## return output
-    print(output)
-    return(output)
+    db.close()
+    return render_template('index.html', items=items)
 
 if __name__ == '__main__':
     app.debug = True
     db.create_all()
     app.secret_key = "123"
-    hello()
     app.run(host='')
 
     

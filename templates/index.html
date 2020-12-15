@@ -64,6 +64,10 @@
                 float: right;
                 color: black;
             }
+            .DB{
+                position: absolute;
+                top: 500px;
+            }
         </style>
     </head>
     <body>
@@ -84,6 +88,14 @@
 
             <input class='keyword' type="text" placeholder="검색어 입력">
         </form>
+        <div class="DB">
+            {% for i in items %}
+            {{ i.gCategory }} </br>
+            {{ i.gName }} </br>
+            {{ i.gAddress }} </br>
+            {{ i.gNumber }} </br></br>
+            {% endfor %}
+        </div>
     </body>
 </html>
 	{% endif %}
@@ -149,6 +161,11 @@
                 float: right;
                 color: black;
             }
+            .DB{
+                position: absolute;
+                top: 300px;
+                left: 300px;
+            }
         </style>
     </head>
     <body>
@@ -168,9 +185,13 @@
 
             <input class='keyword' type="text" placeholder="검색어 입력">
         </form>
-        <br>
-        <div id="result">
-            
+        <div class="DB">
+                {% for i in items %}
+                {{ i.gCategory }} </br>
+                {{ i.gName }} </br>
+                {{ i.gAddress }} </br>
+                {{ i.gNumber }} </br></br>
+                {% endfor %}
         </div>
     </body>
 </html>
