@@ -37,6 +37,9 @@ def okay():
         print(items)
         return render_template('okay.html', items=items)
 
+
+
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///GYM_table.db'
 db = SQLAlchemy(app)
 
@@ -127,18 +130,20 @@ def logout():
     return redirect(url_for('home'))
 
 @app.route('/index', methods=['GET', 'POST'])
-def select():
+def search():
     search=request.form.get("search", "")
     conn=sqlite3.connect('GYM_table.db')
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
-    sql="SELECT gCategory FROM GYM WHERE gCategory LIKE ?"
+    sql="SELECT * FROM GYM WHERE gCategory LIKE ?"
     cur.execute(sql, ('%'+search+'%',))
     rows = cur.fetchall()
     conn.close()
-
     return render_template('index.html', data=rows)
+   
 
+
+   
 
 #app = Flask(__name__)
 

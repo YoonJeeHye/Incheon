@@ -82,21 +82,14 @@
             <h1><a href="/">INCHEON's GYM</a></h1>
         </div>
 
-        <form class='search'>
-            <button class='searchbutton' type="submit" name="click" value="">
-            </button>
+        <div class='search'>
+            <form action="/index" method="post">
+                <button class='searchbutton' type="submit" name="click" value="">
+                </button>
 
-            <input class='keyword' type="text" name="search" placeholder="검색어 입력">
-        </form>
-        <div class="DB">
-            {% for i in items %}
-            {{ i.gCategory }} </br>
-            {{ i.gName }} </br>
-            {{ i.gAddress }} </br>
-            {{ i.gNumber }} </br></br>
-            <a href="/okay">Reservation</a> <br> <br>
-            {% endfor %}
-        </div>
+                <input class='keyword' type="text" name="search" placeholder="검색어 입력">
+            </form>
+        </div>  
     </body>
 </html>
 	{% endif %}
@@ -180,21 +173,15 @@
             <h1><a href="/">INCHEON's GYM</a></h1>
         </div>
 
-        <form class='search'>
-            <button class='searchbutton' type="submit" name="click" value="">
-            </button>
+        <div class='search'>
+            <form action="/index" method="post">
+                <button class='searchbutton' type="submit" name="click" value="">
+                </button>
 
-            <input class='keyword' type="text" placeholder="검색어 입력">
-        </form>
-        <div class="DB">
-                {% for i in items %}
-                {{ i.gCategory }} </br>
-                {{ i.gName }} </br>
-                {{ i.gAddress }} </br>
-                {{ i.gNumber }} </br></br>
-                <a href="/okay">Reservation</a> <br> <br>
-                {% endfor %}
-        </div>
+                <input class='keyword' type="text" name="search" placeholder="검색어 입력">
+            </form>
+        </div>  
+
     </body>
 </html>
 
