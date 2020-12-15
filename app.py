@@ -38,21 +38,6 @@ class User(db.Model):
         self.userpassword = userpassword
         self.userphone = userphone
 
-class Reservation(db.Model):
-    """ Create reservation table"""
-    username = db.Column(db.String(80),db.ForeignKey('User.username'))
-    userphone = db.Column(db.String(80),db.ForeignKey('User.userphone'),primary_key=True)
-    gNum = db.Column(db.Integer,db.ForeignKey('GYM.gNum'))
-    startTime = db.Column(db.String(80))
-    endTime = db.Column(db.String(80))
-
-    def __init__(self, username, userphone, gNum, startTime, endTime):
-        self.username = username
-        self.userphone = userphone
-        self.gNum = gNum      
-        self.startTime = startTime    
-        self.endTime = endTime 
-
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -108,15 +93,26 @@ def register2():
 @app.route('/okay/',methods=['GET','POST'])
 def okay():
     """Okay Form"""
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        if request.method == 'POST':
-            new_reservation = Reservation(username=request.form['username'], userphone=request.form['userphone'], gNum=request.form['gNum'], startTime=request.form['startTime'], endTime=request.form['endTime'])
-            db.session.add(new_reservation)
-            db.session.commit()
-            return render_template('index.html')
-    return render_template('okay.html')
+    try:
+        username=request.form.get("username","")
+        userphone=request.form.get("userphone","")
+        gNum=request.form.get("gNum","")
+        startTime=request.form.get("startTime","")
+        endTime=request.form.get("endTime","")
+
+        conn=sqlite3.connect('GYM_table.db')
+        sql="INSERT INTO Reservation (username, userphone, gNum, startTime, endTime) VALUES (?,?,?,?,?)"
+        cur.execute(sql, (username,userphone,gNum,startTime,endTime))
+        conn.commit()
+
+        print("successfully added")
+    except Exception as e:
+        conn.rollback()
+        print('db error:', e)
+        print("Error in insert operation")
+    finally : 
+        conn.close()
+        return redirect(url_for('okay'))
 
 @app.route("/logout")
 def logout():
