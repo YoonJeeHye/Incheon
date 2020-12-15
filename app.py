@@ -7,6 +7,36 @@ from instagram import getfollowedby, getname
 import sqlite3
 
 app = Flask(__name__)
+
+@app.route('/')
+def GYMMenu():
+    db = sqlite3.connect("GYM_table.db")
+    db.row_factory = sqlite3.Row
+    
+    items = db.execute(
+        'SELECT gCategory, gName, gAddress, gNumber FROM GYM'
+    ).fetchall()
+
+    db.close()
+    return render_template('index.html', items=items)
+
+@app.route('/okay/')
+def okay():
+    """Okay Form"""
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        db = sqlite3.connect("GYM_table.db")
+        db.row_factory = sqlite3.Row
+    
+        items = db.execute(
+            'SELECT username, userphone FROM user'
+        ).fetchall()
+
+        db.close()
+        print(items)
+        return render_template('okay.html', items=items)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///GYM_table.db'
 db = SQLAlchemy(app)
 
@@ -27,23 +57,18 @@ class User(db.Model):
 
 class Reservation(db.Model):
     """ Create reservation table"""
-    rNum = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80))
-    db.ForeignKey('User.username'))
-    userphone = db.Column(db.String(80))
-    db.ForeignKey('User.userphone'))
-    gNum = db.Column(db.Integer)
-    db.ForeignKey('GYM.gNum'))
+    username = db.Column(db.String(80),db.ForeignKey('User.username'),primary_key=True)
+    userphone = db.Column(db.String(80),db.ForeignKey('User.userphone'),primary_key=True)
+    gNum = db.Column(db.Integer,db.ForeignKey('GYM.gNum'),primary_key=True)
     startTime = db.Column(db.String(80))
     endTime = db.Column(db.String(80))
 
-    def __init__(self,rNum, username, userphone,gNum,startTime,endTime):
-        self.rNum = rNum
+    def __init__(self, username, userphone, gNum, startTime, endTime):
         self.username = username
         self.userphone = userphone
         self.gNum = gNum      
         self.startTime = startTime    
-        self.endTime = endTime     
+        self.endTime = endTime 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -101,32 +126,21 @@ def logout():
     session['logged_in'] = False
     return redirect(url_for('home'))
 
-app = Flask(__name__)
-
-@app.route('/')
-def GYMMenu():
-    db = sqlite3.connect("GYM_table.db")
-    db.row_factory = sqlite3.Row
-    
-    items = db.execute(
-        'SELECT gCategory, gName, gAddress, gNumber FROM GYM'
-    ).fetchall()
-
-    db.close()
-    return render_template('index.html')
-
-@app.route('/', methods=['GET', 'POST'])
-def search():
+@app.route('/index', methods=['GET', 'POST'])
+def select():
     search=request.form.get("search", "")
-    conn=sqlite3.connect("GYM_table.db")
+    conn=sqlite3.connect('GYM_table.db')
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
-    sql="SELECT gCategory FROM GYM WHERE gCategory like ?"
+    sql="SELECT gCategory FROM GYM WHERE gCategory LIKE ?"
     cur.execute(sql, ('%'+search+'%',))
     rows = cur.fetchall()
     conn.close()
 
     return render_template('index.html', data=rows)
+
+
+#app = Flask(__name__)
 
 
 

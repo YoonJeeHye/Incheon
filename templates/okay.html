@@ -17,18 +17,17 @@
         </style>
     </head>
     <body>
-        <div class="DB">
-            {% for i in items %}
-            {{ i.gNum }} </br>
-            {{ i.username }} </br>
-            {{ i.userphone }} </br></br>
-            {% endfor %}
-        </div>
         <div class="inputBox">
             <input type="text" name="startTime" placeholder="사용 시작 시간">
         </div>
         <div class="inputBox">
             <input type="text" name="endTime" placeholder="사용 완료 시간">
+        </div>
+        <div class="DB">
+            {% for i in items %}
+            {{ i.username }} </br>
+            {{ i.userphone }} </br></br>
+            {% endfor %}
         </div>
     </body>
 </html>
