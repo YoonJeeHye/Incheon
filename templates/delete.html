@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not session['logged_in'] %}
+{% else %}
+
+<!DOCTYPE html>
+<html>
+<body>
+            <h1>시설 고유 번호</h1>
+        <form action="/delete/" method="post">
+            <input type='integer' name='gNum', placeholder='시설 고유 번호'>
+            <button><a href="/delete/">delete</a></button>
+        </form>
+</body>
+</html>
+
+{% endif %}
+{% endblock %}

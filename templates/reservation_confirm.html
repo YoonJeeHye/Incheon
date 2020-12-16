@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not session['logged_in'] %}
+{% else %}
+
+{% for items in items %}
+            <p>예약 내역입니다!!</p>
+            <li><h3>사용자 이름 : {{ items[0] }}</h3>
+                <h3>사용자 전화번호 : {{ items[1] }}</h3>
+                <h3>시설 고유 번호 : {{ items[2] }}</h3>
+                <h3>이용 시작 시간 : {{ items[3] }}</h3>
+                <h3>이용 완료 시간 : {{ items[4] }}</h3>
+                <a href='{{url_for('delete')}}'>Edit</a>
+        {% endfor %}
+            </li>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+
+    </body>
+</html>
+{% endif %}
+{% endblock %}

@@ -20,6 +20,18 @@ def GYMMenu():
     db.close()
     return render_template('index.html', items=items)
 
+@app.route('/reservation_confirm')
+def reservation_confirm():
+    db = sqlite3.connect("GYM_table.db")
+    db.row_factory = sqlite3.Row
+    
+    items = db.execute(
+        'SELECT * FROM reservation'
+    ).fetchall()
+
+    db.close()
+    return render_template('reservation_confirm.html', items=items)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///GYM_table.db'
 db = SQLAlchemy(app)
 
@@ -37,6 +49,21 @@ class User(db.Model):
         self.userid = userid
         self.userpassword = userpassword
         self.userphone = userphone
+
+class Reservation(db.Model):
+    """ Create reservation table"""
+    username = db.Column(db.String(80))
+    userphone = db.Column(db.String(80),primary_key=True)
+    gNum = db.Column(db.Integer)
+    startTime = db.Column(db.String(80))
+    endTime = db.Column(db.String(80))
+
+    def __init__(self, username, userphone, gNum, startTime, endTime):
+        self.username = username
+        self.userphone = userphone
+        self.gNum = gNum      
+        self.startTime = startTime    
+        self.endTime = endTime 
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -93,26 +120,16 @@ def register2():
 @app.route('/okay/',methods=['GET','POST'])
 def okay():
     """Okay Form"""
-    try:
-        username=request.form.get("username","")
-        userphone=request.form.get("userphone","")
-        gNum=request.form.get("gNum","")
-        startTime=request.form.get("startTime","")
-        endTime=request.form.get("endTime","")
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        if request.method == 'POST':
+            new_reservation = Reservation(username=request.form['username'], userphone=request.form['userphone'], gNum=request.form['gNum'], startTime=request.form['startTime'], endTime=request.form['endTime'])
+            db.session.add(new_reservation)
+            db.session.commit()
+            return render_template('index.html')
+    return render_template('okay.html')
 
-        conn=sqlite3.connect('GYM_table.db')
-        sql="INSERT INTO Reservation (username, userphone, gNum, startTime, endTime) VALUES (?,?,?,?,?)"
-        cur.execute(sql, (username,userphone,gNum,startTime,endTime))
-        conn.commit()
-
-        print("successfully added")
-    except Exception as e:
-        conn.rollback()
-        print('db error:', e)
-        print("Error in insert operation")
-    finally : 
-        conn.close()
-        return redirect(url_for('okay'))
 
 @app.route("/logout")
 def logout():
@@ -131,6 +148,20 @@ def search():
     rows = cur.fetchall()
     conn.close()
     return render_template('index.html', data=rows)
+
+@app.route('/delete/')
+def delete():
+    if request.method == 'POST':
+        db = sqlite3.connect("GYM_table.db")
+        db.row_factory = sqlite3.Row
+        
+        db.execute(
+            'DELETE FROM reservation'
+        ).fetchall()
+
+        db.close()
+        return render_template('reservation_confirm.html')
+    return render_template('delete.html')
 
 if __name__ == '__main__':
     app.debug = True
